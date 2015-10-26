@@ -26,7 +26,7 @@ BEGIN_MESSAGE_MAP(CGraphicsHomeworkApp, CWinApp)
 	// Standard print setup command
 	ON_COMMAND(ID_FILE_PRINT_SETUP, &CWinApp::OnFilePrintSetup)
 	// Open custom parameters
-	ON_COMMAND(ID_CUSTOM_CONTROLS, &CGraphicsHomeworkApp::OnAppAbout)
+	ON_COMMAND(ID_CUSTOM_CONTROLS, &CGraphicsHomeworkApp::OnEditParams)
 END_MESSAGE_MAP()
 
 
@@ -176,13 +176,37 @@ void CGraphicsHomeworkApp::OnAppAbout()
 	aboutDlg.DoModal();
 }
 
-void CGraphicsHomeworkApp::OnEditParams()
-{
-	//CDia;
-	//aboutDlg.DoModal();
-}
 
 // CGraphicsHomeworkApp message handlers
 
+class CCustumParams : public CDialogEx {
+public:
+	CCustumParams();
+	enum { IDD = IDD_CUSTOM_PARAMS };
 
+protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+	DECLARE_MESSAGE_MAP()
+};
+
+CCustumParams::CCustumParams() : CDialogEx(CCustumParams::IDD)
+{
+}
+
+void CCustumParams::DoDataExchange(CDataExchange* pDX)
+{
+	CDialogEx::DoDataExchange(pDX);
+}
+
+BEGIN_MESSAGE_MAP(CCustumParams, CDialogEx)
+END_MESSAGE_MAP()
+
+// App command to run the custom params dialog
+
+void CGraphicsHomeworkApp::OnEditParams()
+{
+	CCustumParams aboutDlg;
+	aboutDlg.DoModal();
+}
 

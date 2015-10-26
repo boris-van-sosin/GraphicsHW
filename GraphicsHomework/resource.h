@@ -8,6 +8,8 @@
 #define IDR_GraphicsHomeworTYPE         130
 #define IDD_CUSTOM_PARAMS               310
 #define IDC_EDIT1                       1000
+#define IDC_EDIT2                       1001
+#define IDC_EDIT3                       1002
 #define ID_CUSTOM_CONTROLS              32771
 
 // Next default values for new objects
