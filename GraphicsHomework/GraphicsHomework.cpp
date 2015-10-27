@@ -10,6 +10,7 @@
 
 #include "GraphicsHomeworkDoc.h"
 #include "GraphicsHomeworkView.h"
+#include "afxwin.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -179,34 +180,81 @@ void CGraphicsHomeworkApp::OnAppAbout()
 
 // CGraphicsHomeworkApp message handlers
 
-class CCustumParams : public CDialogEx {
+class CCustomParams : public CDialogEx {
 public:
-	CCustumParams();
+	CCustomParams();
 	enum { IDD = IDD_CUSTOM_PARAMS };
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedOk();
+private:
+	float _a, _b, _s;
+public:
+	/*CEdit _EditBoxA;
+	CEdit _EditBoxB;
+	CEdit _EditBoxC;*/
 };
 
-CCustumParams::CCustumParams() : CDialogEx(CCustumParams::IDD)
+CCustomParams::CCustomParams() : CDialogEx(CCustomParams::IDD)
 {
 }
 
-void CCustumParams::DoDataExchange(CDataExchange* pDX)
+void CCustomParams::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	/*DDX_Control(pDX, IDC_EDIT1, _EditBoxA);
+	DDX_Control(pDX, IDC_EDIT2, _EditBoxB);
+	DDX_Control(pDX, IDC_EDIT3, _EditBoxC);*/
 }
 
-BEGIN_MESSAGE_MAP(CCustumParams, CDialogEx)
+BEGIN_MESSAGE_MAP(CCustomParams, CDialogEx)
+	ON_BN_CLICKED(IDOK, &CCustomParams::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 // App command to run the custom params dialog
 
 void CGraphicsHomeworkApp::OnEditParams()
 {
-	CCustumParams aboutDlg;
+	CCustomParams aboutDlg;
 	aboutDlg.DoModal();
 }
 
+bool IsValidFloat(const CString& text)
+{
+	LPCTSTR ptr = (LPCTSTR)text;
+	LPTSTR endptr;
+	float value = _tcstof(ptr, &endptr);
+	return (*ptr && endptr - ptr == text.GetLength());
+}
+
+void CCustomParams::OnBnClickedOk()
+{
+	// TODO: Add your control notification handler code here
+	CString aStr, bStr, sStr;
+	GetDlgItemText(IDC_EDIT1, aStr);
+	GetDlgItemText(IDC_EDIT2, bStr);
+	GetDlgItemText(IDC_EDIT3, sStr);
+	if (aStr != "" && IsValidFloat(aStr))
+	{
+		_a = _ttof(aStr);
+	}
+	if (bStr != "" && IsValidFloat(bStr))
+	{
+		_b = _ttof(bStr);
+	}
+	if (sStr != "" && IsValidFloat(sStr))
+	{
+		_s = _ttof(sStr);
+	}
+	
+	if (isnan(_a) || isnan(_b) || isnan(_s) || _a < 0 || _b < 0)
+	{
+		AfxMessageBox(_T("Invalid value. a and b must be positive."));
+		return;
+	}
+	CDialogEx::OnOK();
+}

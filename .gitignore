@@ -9,3 +9,8 @@ GraphicsHomework/Debug/GraphicsHomeworkView.obj
 GraphicsHomework/Debug/GraphicsHomework.log
 *.lastbuildstate
 GraphicsHomework/Debug/GraphicsHomework.log
+Debug/GraphicsHomework.ilk
+*.pdb
+GraphicsHomework/Debug/GraphicsHomework.log
+*.tlog
+*.obj
