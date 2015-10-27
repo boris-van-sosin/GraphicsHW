@@ -183,7 +183,12 @@ void CGraphicsHomeworkApp::OnAppAbout()
 class CCustomParams : public CDialogEx {
 public:
 	CCustomParams();
+	CCustomParams(float a, float b, float s);
 	enum { IDD = IDD_CUSTOM_PARAMS };
+
+	float GetA() const;
+	float GetB() const;
+	float GetS() const;
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -193,7 +198,7 @@ public:
 	afx_msg void OnBnClickedOk();
 private:
 	float _a, _b, _s;
-public:
+private:
 	/*CEdit _EditBoxA;
 	CEdit _EditBoxB;
 	CEdit _EditBoxC;*/
@@ -202,6 +207,22 @@ public:
 CCustomParams::CCustomParams() : CDialogEx(CCustomParams::IDD)
 {
 }
+
+CCustomParams::CCustomParams(float a, float b, float s) : CDialogEx(CCustomParams::IDD),
+	_a(a), _b(b), _s(s)
+{
+	CString str;
+	str.Format(_T("%f"), a);
+	/*SetDlgItemText(IDC_EDIT1, str);
+	str.Format(_T("%f"), b);
+	SetDlgItemText(IDC_EDIT2, str);
+	str.Format(_T("%f"), s);
+	SetDlgItemText(IDC_EDIT3, str);*/
+}
+
+float CCustomParams::GetA() const { return _a; }
+float CCustomParams::GetB() const { return _b; }
+float CCustomParams::GetS() const { return _s; }
 
 void CCustomParams::DoDataExchange(CDataExchange* pDX)
 {
@@ -219,8 +240,11 @@ END_MESSAGE_MAP()
 
 void CGraphicsHomeworkApp::OnEditParams()
 {
-	CCustomParams aboutDlg;
-	aboutDlg.DoModal();
+	CCustomParams changeParamsDlg(_a, _b, _s);
+	changeParamsDlg.DoModal();
+	_a = changeParamsDlg.GetA();
+	_b = changeParamsDlg.GetB();
+	_s = changeParamsDlg.GetS();
 }
 
 bool IsValidFloat(const CString& text)

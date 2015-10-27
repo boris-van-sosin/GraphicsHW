@@ -29,6 +29,8 @@ public:
 	afx_msg void OnAppAbout();
 	afx_msg void OnEditParams();
 	DECLARE_MESSAGE_MAP()
+private:
+	float _a, _b, _s;
 };
 
 extern CGraphicsHomeworkApp theApp;
