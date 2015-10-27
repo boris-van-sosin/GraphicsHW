@@ -196,6 +196,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOk();
+	afx_msg BOOL OnInitDialog();
 private:
 	float _a, _b, _s;
 private:
@@ -211,13 +212,6 @@ CCustomParams::CCustomParams() : CDialogEx(CCustomParams::IDD)
 CCustomParams::CCustomParams(float a, float b, float s) : CDialogEx(CCustomParams::IDD),
 	_a(a), _b(b), _s(s)
 {
-	CString str;
-	str.Format(_T("%f"), a);
-	/*SetDlgItemText(IDC_EDIT1, str);
-	str.Format(_T("%f"), b);
-	SetDlgItemText(IDC_EDIT2, str);
-	str.Format(_T("%f"), s);
-	SetDlgItemText(IDC_EDIT3, str);*/
 }
 
 float CCustomParams::GetA() const { return _a; }
@@ -281,4 +275,21 @@ void CCustomParams::OnBnClickedOk()
 		return;
 	}
 	CDialogEx::OnOK();
+}
+
+BOOL CCustomParams::OnInitDialog()
+{
+	BOOL res = CDialogEx::OnInitDialog();
+	if (!res)
+	{
+		return res;
+	}
+	CString str;
+	str.Format(_T("%f"), _a);
+	SetDlgItemText(IDC_EDIT1, str);
+	str.Format(_T("%f"), _b);
+	SetDlgItemText(IDC_EDIT2, str);
+	str.Format(_T("%f"), _s);
+	SetDlgItemText(IDC_EDIT3, str);
+	return res;
 }
