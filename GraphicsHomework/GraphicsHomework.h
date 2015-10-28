@@ -32,6 +32,7 @@ public:
 private:
 	float _a, _b, _s;
 	COLORREF _c1, _c2;
+	enum {VALUES = 0, ZEROES = 1} _mode;
 };
 
 extern CGraphicsHomeworkApp theApp;

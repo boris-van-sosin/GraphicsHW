@@ -129,9 +129,10 @@ BOOL CGraphicsHomeworkApp::InitInstance()
 
 	_a = 1;
 	_b = 1;
-	_s = (float)GetSystemMetrics(0) / 10.0;
+	_s = (float)GetSystemMetrics(0) / (float)10.0;
 	_c1 = RGB(0, 0, 0);
 	_c2 = RGB(255, 255, 255);
+	_mode = VALUES;
 	return TRUE;
 }
 
@@ -279,15 +280,15 @@ void CCustomParams::OnBnClickedOk()
 	GetDlgItemText(IDC_EDIT3, sStr);
 	if (aStr != "" && IsValidFloat(aStr))
 	{
-		_a = _ttof(aStr);
+		_a = (float)_ttof(aStr);
 	}
 	if (bStr != "" && IsValidFloat(bStr))
 	{
-		_b = _ttof(bStr);
+		_b = (float)_ttof(bStr);
 	}
 	if (sStr != "" && IsValidFloat(sStr))
 	{
-		_s = _ttof(sStr);
+		_s = (float)_ttof(sStr);
 	}
 	
 	if (isnan(_a) || isnan(_b) || isnan(_s) || _a < 0 || _b < 0)

@@ -139,6 +139,11 @@ BEGIN
     BEGIN
         MENUITEM "&About GraphicsHomework...",  ID_APP_ABOUT
     END
+    POPUP "Mode"
+    BEGIN
+        MENUITEM "Values",                      ID_MODE_VALUES
+        MENUITEM "Zeros",                       ID_MODE_ZEROS
+    END
 END
 
 
