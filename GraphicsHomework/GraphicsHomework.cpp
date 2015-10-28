@@ -130,6 +130,8 @@ BOOL CGraphicsHomeworkApp::InitInstance()
 	_a = 1;
 	_b = 1;
 	_s = (float)GetSystemMetrics(0) / 10.0;
+	_c1 = RGB(0, 0, 0);
+	_c2 = RGB(255, 255, 255);
 	return TRUE;
 }
 
@@ -187,12 +189,14 @@ void CGraphicsHomeworkApp::OnAppAbout()
 class CCustomParams : public CDialogEx {
 public:
 	CCustomParams();
-	CCustomParams(float a, float b, float s);
+	CCustomParams(float a, float b, float s, COLORREF c1, COLORREF c2);
 	enum { IDD = IDD_CUSTOM_PARAMS };
 
 	float GetA() const;
 	float GetB() const;
 	float GetS() const;
+	COLORREF GetC1() const;
+	COLORREF GetC2() const;
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -203,24 +207,30 @@ public:
 	afx_msg BOOL OnInitDialog();
 private:
 	float _a, _b, _s;
+	COLORREF _c1, _c2;
 private:
 	/*CEdit _EditBoxA;
 	CEdit _EditBoxB;
 	CEdit _EditBoxC;*/
+public:
+	afx_msg void OnBnClickedC1();
+	afx_msg void OnBnClickedC2();
 };
 
 CCustomParams::CCustomParams() : CDialogEx(CCustomParams::IDD)
 {
 }
 
-CCustomParams::CCustomParams(float a, float b, float s) : CDialogEx(CCustomParams::IDD),
-	_a(a), _b(b), _s(s)
+CCustomParams::CCustomParams(float a, float b, float s, COLORREF c1, COLORREF c2) : CDialogEx(CCustomParams::IDD),
+_a(a), _b(b), _s(s), _c1(c1), _c2(c2)
 {
 }
 
 float CCustomParams::GetA() const { return _a; }
 float CCustomParams::GetB() const { return _b; }
 float CCustomParams::GetS() const { return _s; }
+COLORREF CCustomParams::GetC1() const { return _c1; }
+COLORREF CCustomParams::GetC2() const { return _c2; }
 
 void CCustomParams::DoDataExchange(CDataExchange* pDX)
 {
@@ -232,17 +242,21 @@ void CCustomParams::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CCustomParams, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CCustomParams::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_C_1, &CCustomParams::OnBnClickedC1)
+	ON_BN_CLICKED(IDC_C_2, &CCustomParams::OnBnClickedC2)
 END_MESSAGE_MAP()
 
 // App command to run the custom params dialog
 
 void CGraphicsHomeworkApp::OnEditParams()
 {
-	CCustomParams changeParamsDlg(_a, _b, _s);
+	CCustomParams changeParamsDlg(_a, _b, _s, _c1, _c2);
 	changeParamsDlg.DoModal();
 	_a = changeParamsDlg.GetA();
 	_b = changeParamsDlg.GetB();
 	_s = changeParamsDlg.GetS();
+	_c1 = changeParamsDlg.GetC1();
+	_c2 = changeParamsDlg.GetC2();
 }
 
 bool IsValidFloat(const CString& text)
@@ -296,4 +310,24 @@ BOOL CCustomParams::OnInitDialog()
 	str.Format(_T("%f"), _s);
 	SetDlgItemText(IDC_EDIT3, str);
 	return res;
+}
+
+
+void CCustomParams::OnBnClickedC1()
+{
+	// TODO: Add your control notification handler code here
+	CColorDialog dialog;
+	dialog.SetCurrentColor(_c1);
+	dialog.DoModal();
+	_c1 = dialog.GetColor();
+}
+
+
+void CCustomParams::OnBnClickedC2()
+{
+	// TODO: Add your control notification handler code here+
+	CColorDialog dialog;
+	//dialog.SetCurrentColor(_c2);
+	dialog.DoModal();
+	_c2 = dialog.GetColor();
 }

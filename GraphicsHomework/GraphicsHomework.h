@@ -31,6 +31,7 @@ public:
 	DECLARE_MESSAGE_MAP()
 private:
 	float _a, _b, _s;
+	COLORREF _c1, _c2;
 };
 
 extern CGraphicsHomeworkApp theApp;
