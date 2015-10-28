@@ -196,10 +196,8 @@ BEGIN
     LTEXT           "Choose your parameters. Only positive numbers are allowed",IDC_STATIC,7,7,194,8
     EDITTEXT        IDC_EDIT2,66,35,60,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT3,66,50,60,14,ES_AUTOHSCROLL
-    LTEXT           "C1:",IDC_STATIC,40,79,12,8
-    LTEXT           "C2:",IDC_STATIC,92,79,12,8
-    PUSHBUTTON      "",IDC_C_2,108,72,26,23
-    PUSHBUTTON      "",IDC_C_1,57,72,26,23
+    PUSHBUTTON      "C2",IDC_C_2,108,72,26,23
+    PUSHBUTTON      "C1",IDC_C_1,57,72,26,23
 END
 
 

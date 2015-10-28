@@ -188,7 +188,7 @@ void CGraphicsHomeworkApp::OnAppAbout()
 
 class CCustomParams : public CDialogEx {
 public:
-	CCustomParams();
+	//CCustomParams();
 	CCustomParams(float a, float b, float s, COLORREF c1, COLORREF c2);
 	enum { IDD = IDD_CUSTOM_PARAMS };
 
@@ -215,12 +215,13 @@ private:
 public:
 	afx_msg void OnBnClickedC1();
 	afx_msg void OnBnClickedC2();
+	afx_msg void OnBnClickedCancel();
 };
-
+/*
 CCustomParams::CCustomParams() : CDialogEx(CCustomParams::IDD)
 {
 }
-
+*/
 CCustomParams::CCustomParams(float a, float b, float s, COLORREF c1, COLORREF c2) : CDialogEx(CCustomParams::IDD),
 _a(a), _b(b), _s(s), _c1(c1), _c2(c2)
 {
@@ -244,6 +245,7 @@ BEGIN_MESSAGE_MAP(CCustomParams, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CCustomParams::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_C_1, &CCustomParams::OnBnClickedC1)
 	ON_BN_CLICKED(IDC_C_2, &CCustomParams::OnBnClickedC2)
+	ON_BN_CLICKED(IDCANCEL, &CCustomParams::OnBnClickedCancel)
 END_MESSAGE_MAP()
 
 // App command to run the custom params dialog
@@ -251,12 +253,13 @@ END_MESSAGE_MAP()
 void CGraphicsHomeworkApp::OnEditParams()
 {
 	CCustomParams changeParamsDlg(_a, _b, _s, _c1, _c2);
-	changeParamsDlg.DoModal();
-	_a = changeParamsDlg.GetA();
-	_b = changeParamsDlg.GetB();
-	_s = changeParamsDlg.GetS();
-	_c1 = changeParamsDlg.GetC1();
-	_c2 = changeParamsDlg.GetC2();
+	if (changeParamsDlg.DoModal() != IDCANCEL) {
+		_a = changeParamsDlg.GetA();
+		_b = changeParamsDlg.GetB();
+		_s = changeParamsDlg.GetS();
+		_c1 = changeParamsDlg.GetC1();
+		_c2 = changeParamsDlg.GetC2();
+	}
 }
 
 bool IsValidFloat(const CString& text)
@@ -317,8 +320,8 @@ void CCustomParams::OnBnClickedC1()
 {
 	// TODO: Add your control notification handler code here
 	CColorDialog dialog(_c1);
-	dialog.DoModal();
-	_c1 = dialog.GetColor();
+	if (dialog.DoModal() != IDCANCEL)
+		_c1 = dialog.GetColor();
 }
 
 
@@ -326,6 +329,13 @@ void CCustomParams::OnBnClickedC2()
 {
 	// TODO: Add your control notification handler code here+
 	CColorDialog dialog(_c2);
-	dialog.DoModal();
-	_c2 = dialog.GetColor();
+	if(dialog.DoModal() != IDCANCEL)
+		_c2 = dialog.GetColor();
+}
+
+
+void CCustomParams::OnBnClickedCancel()
+{
+	// TODO: Add your control notification handler code here
+	CDialogEx::OnCancel();
 }
