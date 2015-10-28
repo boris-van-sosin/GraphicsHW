@@ -316,8 +316,7 @@ BOOL CCustomParams::OnInitDialog()
 void CCustomParams::OnBnClickedC1()
 {
 	// TODO: Add your control notification handler code here
-	CColorDialog dialog;
-	dialog.SetCurrentColor(_c1);
+	CColorDialog dialog(_c1);
 	dialog.DoModal();
 	_c1 = dialog.GetColor();
 }
@@ -326,8 +325,7 @@ void CCustomParams::OnBnClickedC1()
 void CCustomParams::OnBnClickedC2()
 {
 	// TODO: Add your control notification handler code here+
-	CColorDialog dialog;
-	//dialog.SetCurrentColor(_c2);
+	CColorDialog dialog(_c2);
 	dialog.DoModal();
 	_c2 = dialog.GetColor();
 }
