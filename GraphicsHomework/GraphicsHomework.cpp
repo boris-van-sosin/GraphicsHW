@@ -138,6 +138,9 @@ BOOL CGraphicsHomeworkApp::InitInstance()
 	_c2 = RGB(255, 255, 255);
 	_mode = VALUES;
 
+	center_x = _w / 2;
+	center_y = _h / 2;
+
 	return TRUE;
 }
 

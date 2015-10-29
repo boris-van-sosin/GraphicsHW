@@ -80,14 +80,16 @@ void CGraphicsHomeworkView::update_h_w() {
 void CGraphicsHomeworkView::draw_axis(CDC* pDC) {
 	int h = theApp._h;
 	int w = theApp._w;
+	int c_x = theApp.center_x;
+	int c_y = theApp.center_y;
 	
 	// X axis
-	MoveToEx(*pDC, 0, h / 2, NULL);
-	LineTo(*pDC, w, h / 2);
+	MoveToEx(*pDC, 0, c_y, NULL);
+	LineTo(*pDC, w, c_y);
 	
 	// Y axis
-	MoveToEx(*pDC, w / 2, 0, NULL);
-	LineTo(*pDC, w / 2, h);
+	MoveToEx(*pDC, c_x, 0, NULL);
+	LineTo(*pDC, c_x, h);
 }
 
 void CGraphicsHomeworkView::draw_f(CDC* pDC) {
@@ -100,8 +102,8 @@ void CGraphicsHomeworkView::draw_f(CDC* pDC) {
 	for (int i = 0; i < w; i++) {
 		for (int j = 0; j < h; j++) {
 			double x, y;
-			x = (double)i - (double)w / 2;
-			y = (double)j - (double)h / 2;
+			x = (double)i - (double)theApp.center_x;
+			y = (double)j - (double)theApp.center_y;
 			y = -y;
 			double t = (f(x, y) + 1) / 2;
 			COLORREF clr;
