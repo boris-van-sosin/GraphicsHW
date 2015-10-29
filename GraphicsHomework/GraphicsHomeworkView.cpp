@@ -92,6 +92,9 @@ void CGraphicsHomeworkView::draw_f(CDC* pDC) {
 	int h = theApp._h;
 	int w = theApp._w;
 
+	CImage bmp;
+	bmp.Create(w, h, 32);
+
 	for (int i = 0; i < w; i++) {
 		for (int j = 0; j < h; j++) {
 			double x, y;
@@ -112,10 +115,12 @@ void CGraphicsHomeworkView::draw_f(CDC* pDC) {
 				else
 					clr = theApp._c2;
 			}
-			SetPixel(*pDC, i, j, clr);
+			//SetPixel(memDC, i, j, clr);
+			//dib[j + i*w] = clr;
+			bmp.SetPixel(i, j, clr);
 		}
 	}
-
+	bmp.Draw(*pDC, 0, 0);
 }
 
 void CGraphicsHomeworkView::OnDraw(CDC* pDC)

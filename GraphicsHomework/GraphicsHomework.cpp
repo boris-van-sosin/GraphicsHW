@@ -211,6 +211,7 @@ protected:
 public:
 	afx_msg void OnBnClickedOk();
 	afx_msg BOOL OnInitDialog();
+	//afx_msg void OnPaint();
 private:
 	float _a, _b, _s;
 	COLORREF _c1, _c2;
@@ -265,6 +266,7 @@ void CGraphicsHomeworkApp::OnEditParams()
 		_s = changeParamsDlg.GetS();
 		_c1 = changeParamsDlg.GetC1();
 		_c2 = changeParamsDlg.GetC2();
+		this->GetMainWnd()->Invalidate();
 	}
 }
 
@@ -347,6 +349,30 @@ void CCustomParams::OnBnClickedCancel()
 	CDialogEx::OnCancel();
 }
 
+/*void CCustomParams::OnPaint()
+{
+	CDialogEx::OnPaint();
+	CPaintDC dc(this);
+	CRect rect;
+	rect.top = 0;
+	rect.left = 0;
+	rect.right = 10;
+	rect.bottom = 10;
+
+	CPen pen;
+	CBrush brush;
+	pen.CreatePen(PS_SOLID, 1, _c1);
+	brush.CreateSolidBrush(_c1);
+
+	// select brush and pen
+	CPen* oldPen = dc.SelectObject(&pen);
+	CBrush* oldBrush = dc.SelectObject(&brush);
+	// rectangle with magenta frame and "transparent" background
+	dc.Rectangle(rect);
+
+	dc.SelectObject(oldPen);
+	dc.SelectObject(oldBrush);
+}*/
 
 void CGraphicsHomeworkApp::OnSetModeValues()
 {
