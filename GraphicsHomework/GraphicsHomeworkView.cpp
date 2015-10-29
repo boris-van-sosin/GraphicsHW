@@ -96,8 +96,8 @@ void CGraphicsHomeworkView::draw_f(CDC* pDC) {
 	int h = theApp._h;
 	int w = theApp._w;
 
-	CImage bmp;
-	bmp.Create(w, h, 32);
+	//CImage bmp;
+	_img.Create(w, h, 32);
 
 	for (int i = 0; i < w; i++) {
 		for (int j = 0; j < h; j++) {
@@ -107,24 +107,41 @@ void CGraphicsHomeworkView::draw_f(CDC* pDC) {
 			y = -y;
 			double t = (f(x, y) + 1) / 2;
 			COLORREF clr;
+			BYTE red, green, blue;
 			if (theApp._mode == CGraphicsHomeworkApp::VALUES) {
-				BYTE red = GetRValue(theApp._c1) * (1 - t) + GetRValue(theApp._c2) * t;
-				BYTE green = GetGValue(theApp._c1) * (1 - t) + GetGValue(theApp._c2) * t;
-				BYTE blue = GetBValue(theApp._c1) * (1 - t) + GetBValue(theApp._c2) * t;
+				red = GetRValue(theApp._c1) * (1 - t) + GetRValue(theApp._c2) * t;
+				green = GetGValue(theApp._c1) * (1 - t) + GetGValue(theApp._c2) * t;
+				blue = GetBValue(theApp._c1) * (1 - t) + GetBValue(theApp._c2) * t;
 				clr = RGB(red, green, blue);
 			}
 			else {
 				if (f(x, y) > 0)
+				{
 					clr = theApp._c1;
+					red = GetRValue(theApp._c1);
+					green = GetGValue(theApp._c1);
+					blue = GetBValue(theApp._c1);
+				}
 				else
+				{
 					clr = theApp._c2;
+					red = GetRValue(theApp._c2);
+					green = GetGValue(theApp._c2);
+					blue = GetBValue(theApp._c2);
+				}
 			}
 			//SetPixel(memDC, i, j, clr);
 			//dib[j + i*w] = clr;
-			bmp.SetPixel(i, j, clr);
+
+			//_img.SetPixel(i, j, clr);
+			BYTE* pos = (BYTE*)_img.GetPixelAddress(i, j);
+			*pos = red;
+			*(pos + 1) = green;
+			*(pos + 2) = blue;
 		}
 	}
-	bmp.BitBlt(*pDC, 0, 0, w, h, 0, 0);
+	_img.BitBlt(*pDC, 0, 0, w, h, 0, 0);
+	_img.Destroy();
 }
 
 void CGraphicsHomeworkView::OnDraw(CDC* pDC)

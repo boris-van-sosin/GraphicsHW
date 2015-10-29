@@ -46,6 +46,8 @@ protected:
 	afx_msg BOOL OnMouseWheel(UINT, short, CPoint);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	DECLARE_MESSAGE_MAP()
+private:
+	CImage _img;
 };
 
 #ifndef _DEBUG  // debug version in GraphicsHomeworkView.cpp
