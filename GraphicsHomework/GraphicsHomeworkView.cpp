@@ -27,6 +27,7 @@ BEGIN_MESSAGE_MAP(CGraphicsHomeworkView, CView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
 	ON_WM_MOUSEWHEEL()
+	ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 // CGraphicsHomeworkView construction/destruction
@@ -183,4 +184,12 @@ BOOL CGraphicsHomeworkView::OnMouseWheel(UINT flags, short zdelta, CPoint point)
 	theApp._s += zdelta;
 	Invalidate();
 	return true;
+}
+
+void CGraphicsHomeworkView::OnMouseMove(UINT nFlags, CPoint point) {
+	if (!(nFlags & MK_LBUTTON))
+		return;
+	theApp.center_x = point.x;
+	theApp.center_y = point.y;
+	Invalidate();
 }

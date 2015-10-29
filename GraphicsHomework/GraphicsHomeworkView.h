@@ -44,6 +44,7 @@ protected:
 // Generated message map functions
 protected:
 	afx_msg BOOL OnMouseWheel(UINT, short, CPoint);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	DECLARE_MESSAGE_MAP()
 };
 
