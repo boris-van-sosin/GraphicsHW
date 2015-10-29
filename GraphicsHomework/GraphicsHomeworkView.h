@@ -17,6 +17,7 @@ public:
 
 // Operations
 public:
+	double f(double x, double y);
 
 // Overrides
 public:

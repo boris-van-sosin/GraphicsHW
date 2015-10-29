@@ -50,7 +50,20 @@ BOOL CGraphicsHomeworkView::PreCreateWindow(CREATESTRUCT& cs)
 
 // CGraphicsHomeworkView drawing
 
-void CGraphicsHomeworkView::OnDraw(CDC* /*pDC*/)
+double CGraphicsHomeworkView::f(double x, double y) {
+	double a, b, s;
+	double h, w;
+
+	// TODO: get here the right values
+
+	double t1, t2;
+	t1 = a*(x - w / 2) * a*(x - w / 2);
+	t2 = b*(y - h / 2) * b*(y - h / 2);
+
+	return sin((t1 + t2)/s);
+}
+
+void CGraphicsHomeworkView::OnDraw(CDC* pDC)
 {
 	CGraphicsHomeworkDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
@@ -58,6 +71,7 @@ void CGraphicsHomeworkView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: add draw code for native data here
+	SetPixel(*pDC, 5, 5, RGB(255, 0, 0));
 }
 
 
