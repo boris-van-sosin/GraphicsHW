@@ -347,14 +347,22 @@ void CCustomParams::OnBnClickedCancel()
 void CGraphicsHomeworkApp::OnSetModeValues()
 {
 	CMenu* m = GetMainWnd()->GetMenu();
-	m->CheckMenuItem(ID_MODE_VALUES, MF_CHECKED);
-	m->CheckMenuItem(ID_MODE_ZEROS, MF_UNCHECKED);
+	if (m)
+	{
+		m->CheckMenuItem(ID_MODE_VALUES, MF_CHECKED);
+		m->CheckMenuItem(ID_MODE_ZEROS, MF_UNCHECKED);
+		_mode = VALUES;
+	}
 }
 
 
 void CGraphicsHomeworkApp::OnModeZeros()
 {
 	CMenu* m = GetMainWnd()->GetMenu();
-	m->CheckMenuItem(ID_MODE_VALUES, MF_UNCHECKED);
-	m->CheckMenuItem(ID_MODE_ZEROS, MF_CHECKED);
+	if (m)
+	{
+		m->CheckMenuItem(ID_MODE_VALUES, MF_UNCHECKED);
+		m->CheckMenuItem(ID_MODE_ZEROS, MF_CHECKED);
+		_mode = ZEROES;
+	}
 }
