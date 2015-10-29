@@ -33,6 +33,9 @@ private:
 	float _a, _b, _s;
 	COLORREF _c1, _c2;
 	enum {VALUES = 0, ZEROES = 1} _mode;
+public:
+	afx_msg void OnSetModeValues();
+	afx_msg void OnModeZeros();
 };
 
 extern CGraphicsHomeworkApp theApp;

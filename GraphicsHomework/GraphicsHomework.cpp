@@ -28,6 +28,8 @@ BEGIN_MESSAGE_MAP(CGraphicsHomeworkApp, CWinApp)
 	ON_COMMAND(ID_FILE_PRINT_SETUP, &CWinApp::OnFilePrintSetup)
 	// Open custom parameters
 	ON_COMMAND(ID_CUSTOM_CONTROLS, &CGraphicsHomeworkApp::OnEditParams)
+	ON_COMMAND(ID_MODE_VALUES, &CGraphicsHomeworkApp::OnSetModeValues)
+	ON_COMMAND(ID_MODE_ZEROS, &CGraphicsHomeworkApp::OnModeZeros)
 END_MESSAGE_MAP()
 
 
@@ -339,4 +341,20 @@ void CCustomParams::OnBnClickedCancel()
 {
 	// TODO: Add your control notification handler code here
 	CDialogEx::OnCancel();
+}
+
+
+void CGraphicsHomeworkApp::OnSetModeValues()
+{
+	CMenu* m = GetMainWnd()->GetMenu();
+	m->CheckMenuItem(ID_MODE_VALUES, MF_CHECKED);
+	m->CheckMenuItem(ID_MODE_ZEROS, MF_UNCHECKED);
+}
+
+
+void CGraphicsHomeworkApp::OnModeZeros()
+{
+	CMenu* m = GetMainWnd()->GetMenu();
+	m->CheckMenuItem(ID_MODE_VALUES, MF_UNCHECKED);
+	m->CheckMenuItem(ID_MODE_ZEROS, MF_CHECKED);
 }

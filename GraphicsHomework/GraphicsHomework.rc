@@ -141,7 +141,7 @@ BEGIN
     END
     POPUP "Mode"
     BEGIN
-        MENUITEM "Values",                      ID_MODE_VALUES
+        MENUITEM "Values",                      ID_MODE_VALUES, CHECKED
         MENUITEM "Zeros",                       ID_MODE_ZEROS
     END
 END
