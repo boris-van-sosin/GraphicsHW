@@ -29,8 +29,9 @@ public:
 	afx_msg void OnAppAbout();
 	afx_msg void OnEditParams();
 	DECLARE_MESSAGE_MAP()
-private:
+public: // because I need them fron the view
 	float _a, _b, _s;
+	int _h, _w; // size of the view
 	COLORREF _c1, _c2;
 	enum {VALUES = 0, ZEROES = 1} _mode;
 public:

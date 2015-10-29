@@ -129,12 +129,15 @@ BOOL CGraphicsHomeworkApp::InitInstance()
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
 
+	_w = GetSystemMetrics(0);
+	_h = GetSystemMetrics(1);
 	_a = 1;
 	_b = 1;
-	_s = (float)GetSystemMetrics(0) / (float)10.0;
+	_s = _w / 10.0;
 	_c1 = RGB(0, 0, 0);
 	_c2 = RGB(255, 255, 255);
 	_mode = VALUES;
+
 	return TRUE;
 }
 
@@ -298,6 +301,7 @@ void CCustomParams::OnBnClickedOk()
 		AfxMessageBox(_T("Invalid value. a and b must be positive."));
 		return;
 	}
+
 	CDialogEx::OnOK();
 }
 

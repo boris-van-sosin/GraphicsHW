@@ -54,13 +54,68 @@ double CGraphicsHomeworkView::f(double x, double y) {
 	double a, b, s;
 	double h, w;
 
-	// TODO: get here the right values
+	a = theApp._a;
+	b = theApp._b;
+	s = theApp._s;
+	w = theApp._w;
+	h = theApp._h;
 
 	double t1, t2;
 	t1 = a*(x - w / 2) * a*(x - w / 2);
 	t2 = b*(y - h / 2) * b*(y - h / 2);
 
 	return sin((t1 + t2)/s);
+}
+
+void CGraphicsHomeworkView::update_h_w() {
+	RECT rect;
+	LPRECT lprect = &rect;
+	GetClientRect(lprect);
+	theApp._h = rect.bottom;
+	theApp._w = rect.right;
+}
+
+void CGraphicsHomeworkView::draw_axis(CDC* pDC) {
+	int h = theApp._h;
+	int w = theApp._w;
+	
+	// X axis
+	MoveToEx(*pDC, 0, h / 2, NULL);
+	LineTo(*pDC, w, h / 2);
+	
+	// Y axis
+	MoveToEx(*pDC, w / 2, 0, NULL);
+	LineTo(*pDC, w / 2, h);
+}
+
+void CGraphicsHomeworkView::draw_f(CDC* pDC) {
+	int h = theApp._h;
+	int w = theApp._w;
+
+	for (int i = 0; i < w; i++) {
+		for (int j = 0; j < h; j++) {
+			double x, y;
+			x = (double)i - (double)w / 2;
+			y = (double)j - (double)h / 2;
+			y = -y;
+			double t = (f(x, y) + 1) / 2;
+			COLORREF clr;
+			if (theApp._mode == CGraphicsHomeworkApp::VALUES) {
+				BYTE red = GetRValue(theApp._c1) * (1 - t) + GetRValue(theApp._c2) * t;
+				BYTE green = GetGValue(theApp._c1) * (1 - t) + GetGValue(theApp._c2) * t;
+				BYTE blue = GetBValue(theApp._c1) * (1 - t) + GetBValue(theApp._c2) * t;
+				clr = RGB(red, green, blue);
+			}
+			else {
+				if (f(x, y) > 0)
+					clr = theApp._c1;
+				else
+					clr = theApp._c2;
+			}
+			SetPixel(*pDC, i, j, clr);
+		}
+	}
+
 }
 
 void CGraphicsHomeworkView::OnDraw(CDC* pDC)
@@ -71,7 +126,9 @@ void CGraphicsHomeworkView::OnDraw(CDC* pDC)
 		return;
 
 	// TODO: add draw code for native data here
-	SetPixel(*pDC, 5, 5, RGB(255, 0, 0));
+	update_h_w();
+	draw_f(pDC);
+	draw_axis(pDC);
 }
 
 

@@ -18,6 +18,9 @@ public:
 // Operations
 public:
 	double f(double x, double y);
+	void draw_f(CDC* pDC);
+	void draw_axis(CDC* pDC);
+	void update_h_w();
 
 // Overrides
 public:
