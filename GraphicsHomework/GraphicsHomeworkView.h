@@ -43,6 +43,7 @@ protected:
 
 // Generated message map functions
 protected:
+	afx_msg BOOL OnMouseWheel(UINT, short, CPoint);
 	DECLARE_MESSAGE_MAP()
 };
 
