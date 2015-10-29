@@ -155,7 +155,6 @@ void CGraphicsHomeworkView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 	// TODO: add cleanup after printing
 }
 
-
 // CGraphicsHomeworkView diagnostics
 
 #ifdef _DEBUG

@@ -32,6 +32,7 @@ public:
 public: // because I need them fron the view
 	float _a, _b, _s;
 	int _h, _w; // size of the view
+	int center_x, center_y; // not in use yet
 	COLORREF _c1, _c2;
 	enum {VALUES = 0, ZEROES = 1} _mode;
 public:
