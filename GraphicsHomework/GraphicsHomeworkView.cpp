@@ -124,7 +124,7 @@ void CGraphicsHomeworkView::draw_f(CDC* pDC) {
 			bmp.SetPixel(i, j, clr);
 		}
 	}
-	bmp.Draw(*pDC, 0, 0);
+	bmp.BitBlt(*pDC, 0, 0, w, h, 0, 0);
 }
 
 void CGraphicsHomeworkView::OnDraw(CDC* pDC)
