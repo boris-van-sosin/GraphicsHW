@@ -1,0 +1,17 @@
+*.pdb
+GraphicsHomework/Debug/GraphicsHomework.log
+*.pdb
+*.obj
+GraphicsHomework/Debug/GraphicsHomeworkView.obj
+*.exe
+*.log
+*.lastbuildstate
+GraphicsHomework/Debug/GraphicsHomework.log
+*.lastbuildstate
+GraphicsHomework/Debug/GraphicsHomework.log
+Debug/GraphicsHomework.ilk
+GraphicsHomework/Debug
+*.pdb
+GraphicsHomework/Debug/GraphicsHomework.log
+*.tlog
+*.obj
