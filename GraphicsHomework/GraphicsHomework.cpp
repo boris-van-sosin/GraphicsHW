@@ -381,7 +381,10 @@ void CGraphicsHomeworkApp::OnSetModeValues()
 	{
 		m->CheckMenuItem(ID_MODE_VALUES, MF_CHECKED);
 		m->CheckMenuItem(ID_MODE_ZEROS, MF_UNCHECKED);
-		_mode = VALUES;
+		if (_mode != VALUES) {
+			_mode = VALUES;
+			GetMainWnd()->Invalidate();
+		}
 	}
 }
 
@@ -393,6 +396,9 @@ void CGraphicsHomeworkApp::OnModeZeros()
 	{
 		m->CheckMenuItem(ID_MODE_VALUES, MF_UNCHECKED);
 		m->CheckMenuItem(ID_MODE_ZEROS, MF_CHECKED);
-		_mode = ZEROES;
+		if (_mode != ZEROES) {
+			_mode = ZEROES;
+			GetMainWnd()->Invalidate();
+		}
 	}
 }
