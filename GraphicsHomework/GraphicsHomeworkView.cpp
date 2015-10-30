@@ -73,8 +73,15 @@ void CGraphicsHomeworkView::update_h_w() {
 	RECT rect;
 	LPRECT lprect = &rect;
 	GetClientRect(lprect);
+
+	if (rect.bottom == theApp._h && rect.right == theApp._w)
+		return;
+
 	theApp._h = rect.bottom;
 	theApp._w = rect.right;
+	theApp.center_x = theApp._w / 2;
+	theApp.center_y = theApp._h / 2;
+	theApp._s = theApp._w / 10;
 }
 
 void CGraphicsHomeworkView::draw_axis(CDC* pDC) {

@@ -118,7 +118,19 @@ BOOL CGraphicsHomeworkApp::InitInstance()
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
 
+	// init our params
+	_w = -1; // these are overriden
+	_h = -1;
 
+	_a = 1;
+	_b = 1;
+	_s = 0;	// overriden
+	_c1 = RGB(0, 0, 0);
+	_c2 = RGB(255, 255, 255);
+	_mode = VALUES;
+
+	center_x = _w / 2; // these will be overriden
+	center_y = _h / 2;
 
 	// Dispatch commands specified on the command line.  Will return FALSE if
 	// app was launched with /RegServer, /Register, /Unregserver or /Unregister.
@@ -129,17 +141,7 @@ BOOL CGraphicsHomeworkApp::InitInstance()
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
 
-	_w = GetSystemMetrics(0);
-	_h = GetSystemMetrics(1);
-	_a = 1;
-	_b = 1;
-	_s = _w / 10.0;
-	_c1 = RGB(0, 0, 0);
-	_c2 = RGB(255, 255, 255);
-	_mode = VALUES;
-
-	center_x = _w / 2;
-	center_y = _h / 2;
+	GetMainWnd()->Invalidate();
 
 	return TRUE;
 }
