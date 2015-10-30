@@ -211,7 +211,7 @@ CGraphicsHomeworkDoc* CGraphicsHomeworkView::GetDocument() const // non-debug ve
 // CGraphicsHomeworkView message handlers
 
 BOOL CGraphicsHomeworkView::OnMouseWheel(UINT flags, short zdelta, CPoint point) {
-	theApp._s += zdelta;
+	theApp._s += zdelta / WHEEL_DELTA;
 	Invalidate();
 	return true;
 }
