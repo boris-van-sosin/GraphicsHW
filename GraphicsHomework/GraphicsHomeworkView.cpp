@@ -147,9 +147,9 @@ void CGraphicsHomeworkView::draw_f(CDC* pDC) {
 
 			//_img.SetPixel(i, j, clr);
 			BYTE* pos = (BYTE*)_img.GetPixelAddress(i, j);
-			*pos = red;
+			*pos = blue;
 			*(pos + 1) = green;
-			*(pos + 2) = blue;
+			*(pos + 2) = red;
 		}
 	}
 	_img.BitBlt(*pDC, 0, 0, w, h, 0, 0);
