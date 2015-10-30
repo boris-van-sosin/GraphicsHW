@@ -82,6 +82,10 @@ void CGraphicsHomeworkView::update_h_w() {
 	theApp.center_x = theApp._w / 2;
 	theApp.center_y = theApp._h / 2;
 	theApp._s = theApp._w / 10;
+
+	if (!_img.IsNull())
+		_img.Destroy();
+	_img.Create(theApp._w, theApp._h, 32);
 }
 
 void CGraphicsHomeworkView::draw_axis(CDC* pDC) {
@@ -104,7 +108,7 @@ void CGraphicsHomeworkView::draw_f(CDC* pDC) {
 	int w = theApp._w;
 
 	//CImage bmp;
-	_img.Create(w, h, 32);
+	//_img.Create(w, h, 32);
 
 	for (int i = 0; i < w; i++) {
 		for (int j = 0; j < h; j++) {
@@ -148,7 +152,7 @@ void CGraphicsHomeworkView::draw_f(CDC* pDC) {
 		}
 	}
 	_img.BitBlt(*pDC, 0, 0, w, h, 0, 0);
-	_img.Destroy();
+	//_img.Destroy();
 }
 
 void CGraphicsHomeworkView::OnDraw(CDC* pDC)

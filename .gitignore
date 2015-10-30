@@ -15,3 +15,5 @@ GraphicsHomework/Debug
 GraphicsHomework/Debug/GraphicsHomework.log
 *.tlog
 *.obj
+*.sdf
+*.suo
