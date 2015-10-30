@@ -45,6 +45,7 @@ protected:
 protected:
 	afx_msg BOOL OnMouseWheel(UINT, short, CPoint);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	DECLARE_MESSAGE_MAP()
 private:
 	CImage _img;

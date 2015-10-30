@@ -28,6 +28,7 @@ BEGIN_MESSAGE_MAP(CGraphicsHomeworkView, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
 	ON_WM_MOUSEWHEEL()
 	ON_WM_MOUSEMOVE()
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 // CGraphicsHomeworkView construction/destruction
@@ -81,7 +82,7 @@ void CGraphicsHomeworkView::update_h_w() {
 	theApp._w = rect.right;
 	theApp.center_x = theApp._w / 2;
 	theApp.center_y = theApp._h / 2;
-	theApp._s = theApp._w / 10;
+	theApp._s = (double)theApp._w / 10;
 
 	if (!_img.IsNull())
 		_img.Destroy();
@@ -222,4 +223,8 @@ void CGraphicsHomeworkView::OnMouseMove(UINT nFlags, CPoint point) {
 	theApp.center_x = point.x;
 	theApp.center_y = point.y;
 	Invalidate();
+}
+
+afx_msg BOOL CGraphicsHomeworkView::OnEraseBkgnd(CDC* pDC) { // to avoid flickering
+	return TRUE;
 }

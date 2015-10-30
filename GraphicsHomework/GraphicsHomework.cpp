@@ -200,12 +200,12 @@ void CGraphicsHomeworkApp::OnAppAbout()
 class CCustomParams : public CDialogEx {
 public:
 	//CCustomParams();
-	CCustomParams(float a, float b, float s, COLORREF c1, COLORREF c2);
+	CCustomParams(double a, double b, double s, COLORREF c1, COLORREF c2);
 	enum { IDD = IDD_CUSTOM_PARAMS };
 
-	float GetA() const;
-	float GetB() const;
-	float GetS() const;
+	double GetA() const;
+	double GetB() const;
+	double GetS() const;
 	COLORREF GetC1() const;
 	COLORREF GetC2() const;
 
@@ -218,7 +218,7 @@ public:
 	afx_msg BOOL OnInitDialog();
 	//afx_msg void OnPaint();
 private:
-	float _a, _b, _s;
+	double _a, _b, _s;
 	COLORREF _c1, _c2;
 private:
 	/*CEdit _EditBoxA;
@@ -234,14 +234,14 @@ CCustomParams::CCustomParams() : CDialogEx(CCustomParams::IDD)
 {
 }
 */
-CCustomParams::CCustomParams(float a, float b, float s, COLORREF c1, COLORREF c2) : CDialogEx(CCustomParams::IDD),
+CCustomParams::CCustomParams(double a, double b, double s, COLORREF c1, COLORREF c2) : CDialogEx(CCustomParams::IDD),
 _a(a), _b(b), _s(s), _c1(c1), _c2(c2)
 {
 }
 
-float CCustomParams::GetA() const { return _a; }
-float CCustomParams::GetB() const { return _b; }
-float CCustomParams::GetS() const { return _s; }
+double CCustomParams::GetA() const { return _a; }
+double CCustomParams::GetB() const { return _b; }
+double CCustomParams::GetS() const { return _s; }
 COLORREF CCustomParams::GetC1() const { return _c1; }
 COLORREF CCustomParams::GetC2() const { return _c2; }
 
@@ -292,15 +292,15 @@ void CCustomParams::OnBnClickedOk()
 	GetDlgItemText(IDC_EDIT3, sStr);
 	if (aStr != "" && IsValidFloat(aStr))
 	{
-		_a = (float)_ttof(aStr);
+		_a = (double)_ttof(aStr);
 	}
 	if (bStr != "" && IsValidFloat(bStr))
 	{
-		_b = (float)_ttof(bStr);
+		_b = (double)_ttof(bStr);
 	}
 	if (sStr != "" && IsValidFloat(sStr))
 	{
-		_s = (float)_ttof(sStr);
+		_s = (double)_ttof(sStr);
 	}
 	
 	if (isnan(_a) || isnan(_b) || isnan(_s) || _a < 0 || _b < 0)
